@@ -1,24 +1,14 @@
-package com.projeto.urna.model;
+package com.projeto.urna.form;
 
 import java.util.Date;
 
-import javax.persistence.*;
-
-@Entity
-public class Voto {
+public class VotoForm {
 	
-	@Id
-	private int idVoto;
 	private String nomeCandidato;
 	private int numeroCandidato;
 	private Date dataVoto;
-	
-	public Voto() {
-		
-	}
 
-	public Voto(String nomeCandidato, int numeroCandidato, Date dataVoto, int idVoto) {
-		this.idVoto = idVoto;
+	public VotoForm(String nomeCandidato, int numeroCandidato, Date dataVoto) {
 		this.nomeCandidato = nomeCandidato;
 		this.numeroCandidato = numeroCandidato;
 		this.dataVoto = dataVoto;
@@ -35,10 +25,6 @@ public class Voto {
 	public Date getDataVoto() {
 		return dataVoto;
 	}
-	
-	public int getIdVoto() {
-		return idVoto;
-	}
 
 	public void setNomeCandidato(String nomeCandidato) {
 		this.nomeCandidato = nomeCandidato;
@@ -52,9 +38,5 @@ public class Voto {
 		this.dataVoto = dataVoto;
 	}
 
-	public void setIdVoto(int idVoto) {
-		this.idVoto = idVoto;
-	}
-	
 	
 }
