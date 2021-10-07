@@ -1,5 +1,9 @@
 package com.projeto.urna.repository;
 
-public interface CandidatoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projeto.urna.model.Candidato;
+
+public interface CandidatoRepository extends JpaRepository<Candidato, Integer>{
 
 }
