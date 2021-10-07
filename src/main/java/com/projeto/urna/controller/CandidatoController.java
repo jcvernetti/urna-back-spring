@@ -1,10 +1,12 @@
 package com.projeto.urna.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +23,15 @@ public class CandidatoController {
 	@GetMapping
 	public ResponseEntity<List<Candidato>> getCandidatos(){
 		return ResponseEntity.ok().body(candidatoRepository.findAll());
+	}
+	
+	@GetMapping("/{idCandidato}")
+	public ResponseEntity<Candidato> getCandidato(@PathVariable int idCandidato){
+		Optional<Candidato> candidatoExistente = candidatoRepository.findById(idCandidato);
+		
+		if(candidatoExistente.isPresent()) {
+			return ResponseEntity.ok().body(candidatoExistente.get());
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
