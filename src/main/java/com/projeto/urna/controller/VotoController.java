@@ -15,7 +15,7 @@ import com.projeto.urna.model.Voto;
 import com.projeto.urna.repository.VotoRepository;
 
 @RestController
-@RequestMapping("/voto")
+@RequestMapping("/votacao")
 public class VotoController {
 	
 	@Autowired
@@ -34,4 +34,3 @@ public class VotoController {
 		return VotoDTO.converter(votos);
 	}
 }
-

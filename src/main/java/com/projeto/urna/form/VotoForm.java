@@ -2,6 +2,8 @@ package com.projeto.urna.form;
 
 import java.util.Date;
 
+import com.projeto.urna.model.Voto;
+
 public class VotoForm {
 	
 	private String nomeCandidato;
@@ -13,6 +15,15 @@ public class VotoForm {
 		this.numeroCandidato = numeroCandidato;
 		this.dataVoto = dataVoto;
 	}
+
+	public Voto converter() {
+		return new Voto(nomeCandidato, numeroCandidato, dataVoto);
+		
+	}
+	
+	
+	
+	
 
 	public String getNomeCandidato() {
 		return nomeCandidato;
