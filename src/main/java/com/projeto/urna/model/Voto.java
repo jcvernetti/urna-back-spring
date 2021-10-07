@@ -10,17 +10,17 @@ public class Voto {
 	@Id
 	private int idVoto;
 	private String nomeCandidato;
-	private int numCandidato;
+	private int numeroCandidato;
 	private Date dataVoto;
 	
 	public Voto() {
 		
 	}
 
-	public Voto(String nomeCandidato, int numCandidato, Date dataVoto, int idVoto) {
+	public Voto(String nomeCandidato, int numeroCandidato, Date dataVoto, int idVoto) {
 		this.idVoto = idVoto;
 		this.nomeCandidato = nomeCandidato;
-		this.numCandidato = numCandidato;
+		this.numeroCandidato = numeroCandidato;
 		this.dataVoto = dataVoto;
 	}
 
@@ -28,8 +28,8 @@ public class Voto {
 		return nomeCandidato;
 	}
 
-	public int getNumCandidato() {
-		return numCandidato;
+	public int getNumeroCandidato() {
+		return numeroCandidato;
 	}
 
 	public Date getDataVoto() {
@@ -44,8 +44,8 @@ public class Voto {
 		this.nomeCandidato = nomeCandidato;
 	}
 
-	public void setNumCandidato(int numCandidato) {
-		this.numCandidato = numCandidato;
+	public void setNumeroCandidato(int numCandidato) {
+		this.numeroCandidato = numeroCandidato;
 	}
 
 	public void setDataVoto(Date dataVoto) {
