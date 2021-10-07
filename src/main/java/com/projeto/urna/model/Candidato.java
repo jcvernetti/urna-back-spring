@@ -17,6 +17,11 @@ public class Candidato {
 	public Candidato() {
 	}
 
+	public Candidato(String nome, int numero) {
+		this.nome = nome;
+		this.numero = numero;
+	}
+	
 	public Candidato(int id, String nome, int numero) {
 		this.id = id;
 		this.nome = nome;
