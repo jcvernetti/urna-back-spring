@@ -16,15 +16,6 @@ public class VotoForm {
 		this.dataVoto = dataVoto;
 	}
 
-	public Voto converter() {
-		return new Voto(nomeCandidato, numeroCandidato, dataVoto);
-		
-	}
-	
-	
-	
-	
-
 	public String getNomeCandidato() {
 		return nomeCandidato;
 	}
@@ -48,6 +39,8 @@ public class VotoForm {
 	public void setDataVoto(Date dataVoto) {
 		this.dataVoto = dataVoto;
 	}
-
 	
+	public Voto converter() {
+		return new Voto(nomeCandidato, numeroCandidato, dataVoto);		
+	}
 }

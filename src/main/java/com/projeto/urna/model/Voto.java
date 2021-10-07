@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Voto {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idVoto;
 	private String nomeCandidato;
 	private int numeroCandidato;
@@ -15,6 +16,12 @@ public class Voto {
 	
 	public Voto() {
 		
+	}
+	
+	public Voto(String nomeCandidato, int numeroCandidato, Date dataVoto) {
+		this.nomeCandidato = nomeCandidato;
+		this.numeroCandidato = numeroCandidato;
+		this.dataVoto = dataVoto;
 	}
 
 	public Voto(String nomeCandidato, int numeroCandidato, Date dataVoto, int idVoto) {
@@ -55,6 +62,4 @@ public class Voto {
 	public void setIdVoto(int idVoto) {
 		this.idVoto = idVoto;
 	}
-	
-	
 }

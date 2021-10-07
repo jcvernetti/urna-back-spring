@@ -20,7 +20,6 @@ public class VotoDTO {
 	public static List<VotoDTO> converter(List<Voto> votos){
 		return votos.stream().map(VotoDTO:: new).collect(Collectors.toList());
 	}
-	
 
 	public String getNomeCandidato() {
 		return nomeCandidato;
@@ -45,5 +44,4 @@ public class VotoDTO {
 	public void setDataVoto(Date dataVoto) {
 		this.dataVoto = dataVoto;
 	}
-
 }
