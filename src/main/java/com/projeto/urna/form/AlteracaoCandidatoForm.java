@@ -2,20 +2,20 @@ package com.projeto.urna.form;
 
 import com.projeto.urna.model.Candidato;
 
-public class CandidatoForm {
+public class AlteracaoCandidatoForm {
 
 	private String nome;
 	private int numero;
 
-	public CandidatoForm() {
+	public AlteracaoCandidatoForm() {
 	}
 
-	public CandidatoForm(String nome, int numero) {
+	public AlteracaoCandidatoForm(String nome, int numero) {
 		this.nome = nome;
 		this.numero = numero;
 	}
 
-	public CandidatoForm(Candidato candidato) {
+	public AlteracaoCandidatoForm(Candidato candidato) {
 		this.nome =  candidato.getNome();
 		this.numero = candidato.getNumero();
 	}
