@@ -4,26 +4,29 @@ import java.util.Date;
 
 public class LoginDTO {
 	private Date dataLogin;
-	private boolean isLoginValido;
+	private boolean autorizado;
 
-	public LoginDTO(Date dataLogin, boolean isLoginValido) {
+	public LoginDTO() {
+	}
+	
+	public LoginDTO(Date dataLogin, boolean autorizado) {
 		this.dataLogin = dataLogin;
-		this.isLoginValido = isLoginValido;
+		this.autorizado = autorizado;
+	}
+
+	public boolean isAutorizado() {
+		return autorizado;
+	}
+
+	public void setAutorizado(boolean autorizado) {
+		this.autorizado = autorizado;
 	}
 
 	public Date getDataLogin() {
 		return dataLogin;
 	}
 
-	public boolean isLoginValido() {
-		return isLoginValido;
-	}
-
 	public void setDataLogin(Date dataLogin) {
 		this.dataLogin = dataLogin;
-	}
-
-	public void setLoginValido(boolean isLoginValido) {
-		this.isLoginValido = isLoginValido;
 	}
 }

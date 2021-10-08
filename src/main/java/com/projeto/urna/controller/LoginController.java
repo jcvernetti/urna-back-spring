@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,21 +21,22 @@ import com.projeto.urna.repository.LoginRepository;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
-	private Login contraLogin = new Login("admUrna", "1010");
 
 	@Autowired
 	private LoginRepository loginRepository;
 
+	@CrossOrigin	
 	@PostMapping
-	public ResponseEntity<LoginDTO> acessar(@RequestBody LoginForm loginForm) {
+	public ResponseEntity<Object> acessar(@RequestBody LoginForm loginForm) {
 		List<Login> usuarios = loginRepository.findByUsuario(loginForm.getUsuario());
-
+		
 		if (usuarios.size() != 0) {
 			if (usuarios.get(0).getSenha().equals(loginForm.getSenha())) {
 				LoginDTO loginDTO = new LoginDTO(new Date(), true);
 				return ResponseEntity.ok().body(loginDTO);
 			}
 		}
+		
 		return ((BodyBuilder) ResponseEntity.notFound()).body(new LoginDTO(new Date(), false));
 	}
 
