@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.projeto.urna.form.AlteracaoCandidatoForm;
 import com.projeto.urna.form.CandidatoForm;
 import com.projeto.urna.model.Candidato;
+import com.projeto.urna.model.Votacao;
 import com.projeto.urna.repository.CandidatoRepository;
+import com.projeto.urna.repository.VotacaoRepository;
 
 @RestController
 @RequestMapping("/candidato")
@@ -26,6 +28,9 @@ public class CandidatoController {
 
 	@Autowired
 	CandidatoRepository candidatoRepository;
+	
+	@Autowired
+	VotacaoRepository votacaoRepository;
 	
 	@GetMapping
 	public ResponseEntity<List<Candidato>> getCandidatos(){
@@ -45,9 +50,19 @@ public class CandidatoController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Candidato> postCandidato(@RequestBody CandidatoForm candidatoForm){
-		Candidato candidato = candidatoForm.converter();
+		Optional<Votacao> votacaoExistente = votacaoRepository.findById(candidatoForm.getIdVotacao());
 		
-		return ResponseEntity.ok().body(candidatoRepository.save(candidato));
+		if(votacaoExistente.isPresent()) {
+			Votacao votacao = votacaoExistente.get();
+			Candidato candidato = candidatoForm.converter();
+			
+			votacao.addCandidatos(candidato);
+			candidato.addVotacoes(votacao);
+			
+			return ResponseEntity.ok().body(candidato);
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@PutMapping("/{idCandidato}")

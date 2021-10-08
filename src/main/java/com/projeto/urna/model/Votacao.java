@@ -2,11 +2,16 @@ package com.projeto.urna.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Votacao {
@@ -17,29 +22,30 @@ public class Votacao {
     private int tipo;
     private Date dtInicio;
     private Date dtFim;
-    private Date timeInicio;
-    private Date timeFim;
     private boolean iniciada;
 	private boolean terminada;
 	private boolean isVotacaoCurso;
-	private ArrayList<Voto> votos;
-    private ArrayList<Candidato> candidatos;
-    
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idVotacao")
+	private List<Voto> votos;
+	
+	@ManyToMany(mappedBy = "votacoes", cascade = CascadeType.ALL)
+	private List<Candidato> candidatos;
+	    
     public Votacao() {
 	}
 
-	public Votacao(int tipo, Date dtInicio, Date dtFim, Date timeInicio, Date timeFim, boolean iniciada,
-			boolean terminada, boolean isVotacaoCurso, ArrayList<Voto> votos, ArrayList<Candidato> candidatos) {
+	public Votacao(int tipo, Date dtFim, Date timeFim, boolean iniciada, boolean terminada, boolean isVotacaoCurso) {
 		this.tipo = tipo;
-		this.dtInicio = dtInicio;
 		this.dtFim = dtFim;
-		this.timeInicio = timeInicio;
-		this.timeFim = timeFim;
 		this.iniciada = iniciada;
 		this.terminada = terminada;
 		this.isVotacaoCurso = isVotacaoCurso;
-		this.votos = votos;
-		this.candidatos = candidatos;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public int getTipo() {
@@ -54,14 +60,6 @@ public class Votacao {
 		return dtFim;
 	}
 
-	public Date getTimeInicio() {
-		return timeInicio;
-	}
-
-	public Date getTimeFim() {
-		return timeFim;
-	}
-
 	public boolean isIniciada() {
 		return iniciada;
 	}
@@ -74,12 +72,16 @@ public class Votacao {
 		return isVotacaoCurso;
 	}
 
-	public ArrayList<Voto> getVotos() {
+	public List<Voto> getVotos() {
 		return votos;
 	}
 
-	public ArrayList<Candidato> getCandidatos() {
+	public List<Candidato> getCandidatos() {
 		return candidatos;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setTipo(int tipo) {
@@ -94,14 +96,6 @@ public class Votacao {
 		this.dtFim = dtFim;
 	}
 
-	public void setTimeInicio(Date timeInicio) {
-		this.timeInicio = timeInicio;
-	}
-
-	public void setTimeFim(Date timeFim) {
-		this.timeFim = timeFim;
-	}
-
 	public void setIniciada(boolean iniciada) {
 		this.iniciada = iniciada;
 	}
@@ -114,11 +108,42 @@ public class Votacao {
 		this.isVotacaoCurso = isVotacaoCurso;
 	}
 
-	public void setVotos(ArrayList<Voto> votos) {
+	public void setVotos(List<Voto> votos) {
 		this.votos = votos;
 	}
 
-	public void setCandidatos(ArrayList<Candidato> candidatos) {
+	public void setCandidatos(List<Candidato> candidatos) {
 		this.candidatos = candidatos;
 	}
+
+	public void addVoto(Voto voto) {
+		if(votos == null) {
+			votos = new ArrayList<Voto>();
+		}
+		
+		votos.add(voto);
+	}
+	
+	public void addCandidatos(Candidato candidato) {
+		if(candidatos == null) {
+			candidatos = new ArrayList<Candidato>();
+		}
+		
+		candidatos.add(candidato);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

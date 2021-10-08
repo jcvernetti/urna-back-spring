@@ -6,41 +6,40 @@ import com.projeto.urna.model.Voto;
 
 public class VotoForm {
 	
-	private String nomeCandidato;
-	private int numeroCandidato;
+	private int idVotacao;
+	private int idCandidato;
 	private Date dataVoto;
 
-	public VotoForm(String nomeCandidato, int numeroCandidato, Date dataVoto) {
-		this.nomeCandidato = nomeCandidato;
-		this.numeroCandidato = numeroCandidato;
+	public VotoForm(int idCandidato, Date dataVoto) {
 		this.dataVoto = dataVoto;
-	}
-
-	public String getNomeCandidato() {
-		return nomeCandidato;
-	}
-
-	public int getNumeroCandidato() {
-		return numeroCandidato;
+		this.idCandidato = idCandidato;
 	}
 
 	public Date getDataVoto() {
 		return dataVoto;
 	}
 
-	public void setNomeCandidato(String nomeCandidato) {
-		this.nomeCandidato = nomeCandidato;
-	}
-
-	public void setNumeroCandidato(int numeroCandidato) {
-		this.numeroCandidato = numeroCandidato;
-	}
-
 	public void setDataVoto(Date dataVoto) {
 		this.dataVoto = dataVoto;
 	}
 	
+	public int getIdCandidato() {
+		return idCandidato;
+	}
+
+	public void setIdCandidato(int idCandidato) {
+		this.idCandidato = idCandidato;
+	}
+
 	public Voto converter() {
-		return new Voto(nomeCandidato, numeroCandidato, dataVoto);		
+		return new Voto(dataVoto);		
+	}
+
+	public int getIdVotacao() {
+		return idVotacao;
+	}
+
+	public void setIdVotacao(int idVotacao) {
+		this.idVotacao = idVotacao;
 	}
 }

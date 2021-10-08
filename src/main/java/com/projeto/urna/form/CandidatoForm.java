@@ -6,6 +6,7 @@ public class CandidatoForm {
 
 	private String nome;
 	private int numero;
+	private int idVotacao;
 
 	public CandidatoForm() {
 	}
@@ -18,6 +19,14 @@ public class CandidatoForm {
 	public CandidatoForm(Candidato candidato) {
 		this.nome =  candidato.getNome();
 		this.numero = candidato.getNumero();
+	}
+	
+	public int getIdVotacao() {
+		return idVotacao;
+	}
+
+	public void setIdVotacao(int idVotacao) {
+		this.idVotacao = idVotacao;
 	}
 	
 	public String getNome() {

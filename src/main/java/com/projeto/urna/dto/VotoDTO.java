@@ -12,8 +12,8 @@ public class VotoDTO {
 	private Date dataVoto;
 	
 	public VotoDTO(Voto voto) {
-		this.nomeCandidato = voto.getNomeCandidato();
-		this.numeroCandidato = voto.getNumeroCandidato();
+		this.nomeCandidato = voto.getCandidato().getNome();
+		this.numeroCandidato = voto.getCandidato().getNumero();
 		this.dataVoto = voto.getDataVoto();
 	}
 	

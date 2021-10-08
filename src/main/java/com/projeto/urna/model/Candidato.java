@@ -1,9 +1,16 @@
 package com.projeto.urna.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Candidato {
@@ -14,6 +21,12 @@ public class Candidato {
 	private String nome;
 	private int numero;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "votacao_candidato", 
+			joinColumns = { @JoinColumn(name = "idCandidato") }, 
+			inverseJoinColumns = { @JoinColumn(name = "idVotacao")})
+	private List<Votacao> votacoes;
+
 	public Candidato() {
 	}
 
@@ -21,7 +34,7 @@ public class Candidato {
 		this.nome = nome;
 		this.numero = numero;
 	}
-	
+
 	public Candidato(int id, String nome, int numero) {
 		this.id = id;
 		this.nome = nome;
@@ -50,5 +63,13 @@ public class Candidato {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	
+	public void addVotacoes(Votacao votacao) {
+		if(votacoes == null) {
+			votacoes = new ArrayList<Votacao>();
+		}
+		
+		votacoes.add(votacao);
 	}
 }
