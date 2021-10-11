@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class VotacaoController {
 	@Autowired
 	private VotacaoRepository votacaoRepository;
 	
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<VotacaoDTO> getVotacao(){
 		List<Votacao> votacoes = votacaoRepository.findAll();
@@ -38,6 +40,7 @@ public class VotacaoController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@CrossOrigin
 	@GetMapping("/candidatos/{idVotacao}")
 	public Object getCandidatos(@PathVariable int idVotacao) {
 		Optional<Votacao> votacaoExistente = votacaoRepository.findById(idVotacao);
@@ -51,6 +54,7 @@ public class VotacaoController {
 		return "Votação não encontrada";
 	}
 	
+	@CrossOrigin
 	@GetMapping("/votos/{idVotacao}")
 	public Object getVotos(@PathVariable int idVotacao) {
 		Optional<Votacao> votacaoExistente = votacaoRepository.findById(idVotacao);
@@ -64,12 +68,19 @@ public class VotacaoController {
 		return "Votação não encontrada";
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Votacao> postVotacao(@RequestBody VotacaoForm votacaoForm){
-		Votacao votacao = votacaoForm.converter();
+		Votacao votacao = new Votacao();
+		
+		votacao.setTipo(votacaoForm.getTipo());
+		votacao.setDtInicio(votacaoForm.getDtInicio());
+		votacao.setDtFim(votacaoForm.getDtFim());
+		
 		return ResponseEntity.ok().body(votacaoRepository.save(votacao));
 	}
 	
+	@CrossOrigin
 	@DeleteMapping
 	public ResponseEntity<Votacao> deleteVotacao(){
 		List<Votacao> votacoes = votacaoRepository.findAll();

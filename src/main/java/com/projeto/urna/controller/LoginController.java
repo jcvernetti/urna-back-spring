@@ -40,6 +40,7 @@ public class LoginController {
 		return ((BodyBuilder) ResponseEntity.notFound()).body(new LoginDTO(new Date(), false));
 	}
 
+	@CrossOrigin
 	@PostMapping("/cadastro")
 	public ResponseEntity<Object> cadastrar(@RequestBody CadastroLoginForm cadastroLoginForm) {
 		List<Login> usuarios = loginRepository.findByUsuario(cadastroLoginForm.getUsuario());

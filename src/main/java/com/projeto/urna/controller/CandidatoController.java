@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +33,13 @@ public class CandidatoController {
 	@Autowired
 	VotacaoRepository votacaoRepository;
 	
+	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Candidato>> getCandidatos(){
 		return ResponseEntity.ok().body(candidatoRepository.findAll());
 	}
 	
+	@CrossOrigin
 	@GetMapping("/{idCandidato}")
 	public ResponseEntity<Candidato> getCandidato(@PathVariable int idCandidato){
 		Optional<Candidato> candidatoExistente = candidatoRepository.findById(idCandidato);
@@ -47,6 +50,7 @@ public class CandidatoController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public ResponseEntity<Candidato> postCandidato(@RequestBody CandidatoForm candidatoForm){
@@ -81,6 +85,7 @@ public class CandidatoController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/{idCandidato}")
 	@Transactional
 	public ResponseEntity<Candidato> deleteCandidato(@PathVariable int idCandidato){
